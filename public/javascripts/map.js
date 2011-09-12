@@ -60,7 +60,7 @@ var update_c = 1;
 
 function fromCoords(x, y)
 {
-	return new GLatLng(((parseFloat(y)*90)/3000), ((parseFloat(x)*90)/1500));
+	return new GLatLng(((parseFloat(y-50)*90)/3000), ((parseFloat(x)*90)/1500));
 }
 
 function fetchData() {
@@ -95,11 +95,11 @@ function load() {
 		map = new GMap2(document.getElementById("map"));
 
 		var copyrights = new GCopyrightCollection('');
-		var tilelayer = new GTileLayer(copyrights, 1, 4);
+		var tilelayer = new GTileLayer(copyrights, 1, 5);
 		
 		tilelayer.getTileUrl = function(tile, zoom)
 		{ 
-			return 'images/map/'+tile.x+'x'+tile.y+'-'+(6-zoom)+".jpg";
+			return 'images/map/'+tile.x+'x'+tile.y+'-'+zoom+".jpg";
 		};
 		
 		var CUSTOM_MAP = new GMapType( [tilelayer], new EuclideanProjection(20), "Cake" );
