@@ -74,7 +74,7 @@ function fetchData() {
 						var item = data[id];
 						var point = fromCoords(item.x, item.y)
 						markers[item.id] = {}
-						var marker = createMapMarker(point, item.id, "item.text", parseInt(item.icon));
+						var marker = createMapMarker(point, item.id, "item.text", item.icon);
 						markers[item.id].marker = marker;
 						markers[item.id].id = item.id;
 						markersText[item.id] = "<b>" + item.title + "</b>";
@@ -121,10 +121,10 @@ function createMapMarker(point, id, text, type)
 	if (typeof gtasaIcons[type] === "undefined")
 	{
 		var icon = new GIcon(); 
-		icon.image = 'images/icons/Icon_'+type+'.gif';
-		icon.iconSize = new GSize(20, 20);
-		icon.iconAnchor = new GPoint(10, 10);
-		icon.infoWindowAnchor = new GPoint(10, 1);
+		icon.image = 'images/icons/'+type+'.png';
+		icon.iconSize = new GSize(32, 37);
+		icon.iconAnchor = new GPoint(16, 37);
+		icon.infoWindowAnchor = new GPoint(16, 1);
 		gtasaIcons[type] = icon;
 	}
 
