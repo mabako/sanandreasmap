@@ -1,0 +1,24 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @point.title
+%p
+  %b Description:
+  = @point.description
+%p
+  %b Link:
+  = @point.link
+%p
+  %b X:
+  = @point.x
+%p
+  %b Y:
+  = @point.y
+%p
+  %b Icon:
+  = @point.icon
+
+= link_to 'Edit', edit_point_path(@point)
+\|
+= link_to 'Back', points_path

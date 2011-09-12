@@ -64,22 +64,26 @@ function fromCoords(x, y)
 }
 
 function fetchData() {
-	GDownloadUrl("points.json", function(data) {
-		data = eval("("+data+")");
-		if (typeof data.items !== "undefined") {
-			for (id in data.items) {
-				var item = data.items[id];
-				var point = fromCoords(item.pos.x, item.pos.y)
-				if (typeof markers[item.id] === "undefined" || markers[item.id] === null) {
-					markers[item.id] = {}
-					var marker = createMapMarker(point, item.id, item.text, parseInt(item.icon));
-					markers[item.id].marker = marker;
-					markers[item.id].id = item.id;
-					markersText[item.id] = "<b>" + item.name + "</b> <br/>" + item.text;
-					map.addOverlay(markers[item.id].marker);
+	GDownloadUrl("/points.json", function(data)
+	{
+		data = data.evalJSON(true);
+		data.each(
+			function(data)
+			{
+				if (typeof data !== "undefined") {
+					for (id in data) {
+						var item = data[id];
+						var point = fromCoords(item.x, item.y)
+						markers[item.id] = {}
+						var marker = createMapMarker(point, item.id, "item.text", parseInt(item.icon));
+						markers[item.id].marker = marker;
+						markers[item.id].id = item.id;
+						markersText[item.id] = "<b>" + item.title + "</b> <br/>" + item.description;
+						map.addOverlay(markers[item.id].marker);
+					}
 				}
 			}
-		}
+		);
 	});
 }
 
@@ -96,10 +100,10 @@ function load() {
 			return 'images/map/'+tile.x+'x'+tile.y+'-'+(6-zoom)+".jpg";
 		};
 		
-		var CUSTOM_MAP = new GMapType( [tilelayer], new EuclideanProjection(20), "DracoBlue" );
+		var CUSTOM_MAP = new GMapType( [tilelayer], new EuclideanProjection(20), "Cake" );
 		map.addMapType(CUSTOM_MAP);
 		map.setMapType(CUSTOM_MAP);
-		map.addControl(new GSmallMapControl());
+		map.addControl(new GLargeMapControl());
 		map.enableScrollWheelZoom();
 		map.setCenter(fromCoords(2000, -1500), 3);
 		fetchData();

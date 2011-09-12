@@ -1,0 +1,28 @@
+= form_for @point do |f|
+  -if @point.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@point.errors.count, "error")} prohibited this point from being saved:"
+      %ul
+        - @point.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :title
+    = f.text_field :title
+  .field
+    = f.label :description
+    = f.text_field :description
+  .field
+    = f.label :link
+    = f.text_field :link
+  .field
+    = f.label :x
+    = f.text_field :x
+  .field
+    = f.label :y
+    = f.text_field :y
+  .field
+    = f.label :icon
+    = f.text_field :icon
+  .actions
+    = f.submit 'Save'
