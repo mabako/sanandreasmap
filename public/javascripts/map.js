@@ -56,11 +56,10 @@ var gtasaIcons = {};
 var markers = [];
 var markersText = [];
 var map = null;
-var update_c = 1;
 
 function fromCoords(x, y)
 {
-	return new GLatLng(((parseFloat(y-50)*90)/3000), ((parseFloat(x)*90)/1500));
+	return new GLatLng(((parseFloat(y)*90)/3000), ((parseFloat(x)*90)/1500));
 }
 
 function fetchData() {
@@ -86,6 +85,9 @@ function fetchData() {
 				}
 			}
 		);
+		
+		if(window.location.hash !== null)
+			hashChanged(window.location.hash);
 	});
 }
 
@@ -131,4 +133,28 @@ function createMapMarker(point, id, text, type)
 		}
 	);
 	return marker;
+}
+
+// ---
+
+function hashChanged(hash)
+{
+	var i = parseInt(hash.substr(1));
+	if(markers[i] !== null)
+		GEvent.trigger(markers[i].marker, "click");
+}
+
+if ("onhashchange" in window) { // event supported?
+    window.onhashchange = function () {
+        hashChanged(window.location.hash);
+    }
+}
+else { // event not supported:
+    var storedHash = window.location.hash;
+    window.setInterval(function () {
+        if (window.location.hash != storedHash) {
+            storedHash = window.location.hash;
+            hashChanged(storedHash);
+        }
+    }, 100);
 }
