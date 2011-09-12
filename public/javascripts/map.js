@@ -122,7 +122,7 @@ function createMapMarker(point, id, text, type)
 		icon.image = 'images/icons/Icon_'+type+'.gif';
 		icon.iconSize = new GSize(20, 20);
 		icon.iconAnchor = new GPoint(10, 10);
-		icon.infoWindowAnchor = new GPoint(1, 1);
+		icon.infoWindowAnchor = new GPoint(10, 1);
 		gtasaIcons[type] = icon;
 	}
 
