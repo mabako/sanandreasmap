@@ -131,7 +131,8 @@ function createMapMarker(point, id, text, type)
 	var marker = new GMarker(point, gtasaIcons[type]);
 	GEvent.addListener(marker, 'click', function()
 		{
-			marker.openInfoWindowHtml(markersText[id]);
+			marker.openInfoWindowHtml(markersText[id], {onCloseFn: function() { window.location.hash = ""; }});
+			window.location.hash = "#" + id;
 		}
 	);
 	return marker;
