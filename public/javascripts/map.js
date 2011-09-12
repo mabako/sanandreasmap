@@ -39,7 +39,8 @@
   // == a method that checks if the y value is in range, and wraps the x value ==
   EuclideanProjection.prototype.tileCheckRange=function(a,b,c){
     var d=this.tileBounds[b];
-    if (a.y<0 || a.y>=d || a.x<0 || a.x>=d) { // By DracoBlue: added this, to avoid repeatition 
+    if (a.y<0 || a.y>=d || a.x<0 || a.x>=d)
+    {
       return false;
     }
     return true
@@ -57,14 +58,18 @@ var markersText = [];
 var map = null;
 var update_c = 1;
 
+function fromCoords(x, y)
+{
+	return new GLatLng(((parseFloat(y)*90)/3000), ((parseFloat(x)*90)/1500));
+}
+
 function fetchData() {
 	GDownloadUrl("points.json", function(data) {
 		data = eval("("+data+")");
 		if (typeof data.items !== "undefined") {
 			for (id in data.items) {
 				var item = data.items[id];
-				var point = new GLatLng(((parseFloat(item.pos.y)*90)/3000),
-							((parseFloat(item.pos.x)*90)/1500));
+				var point = fromCoords(item.pos.x, item.pos.y)
 				if (typeof markers[item.id] === "undefined" || markers[item.id] === null) {
 					markers[item.id] = {}
 					var marker = createMapMarker(point, item.id, item.text, parseInt(item.icon));
@@ -96,7 +101,7 @@ function load() {
 		map.setMapType(CUSTOM_MAP);
 		map.addControl(new GSmallMapControl());
 		map.enableScrollWheelZoom();
-		map.setCenter(new GLatLng(0, 0), 2);
+		map.setCenter(fromCoords(2000, -1500), 3);
 		fetchData();
 	}
 }
