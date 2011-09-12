@@ -1,0 +1,11 @@
+!!! 1.1
+%html{:xmlns => "http://www.w3.org/1999/xhtml", :lang => "en", "xml:lang" => "en"}
+  %head
+    %title Los Santos
+    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
+    = javascript_include_tag "https://maps.google.com/maps?file=api&v=2&key=ABQIAAAAMWRZBB5vEAlPU51oiMzCwRSwqdAaTweww-pAVZHjK8FxllAlEhRhqDskVzwJrPLrmiXKGDdVAHXm6A"
+    = javascript_include_tag "map"
+    = stylesheet_link_tag "map"
+    = csrf_meta_tag
+  %body{:onload=>"load()", :onunload=>"GUnload()"}
+    #map
