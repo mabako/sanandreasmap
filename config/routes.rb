@@ -1,4 +1,6 @@
 LSMap::Application.routes.draw do
+  devise_for :users
+  
   resources :points
 
   # The priority is based upon order of creation:

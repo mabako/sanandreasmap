@@ -1,4 +1,6 @@
 class PointsController < ApplicationController
+  before_filter :authenticate_user!, :except => [:index]
+  
   # GET /points
   # GET /points.xml
   def index

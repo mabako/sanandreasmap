@@ -31,3 +31,4 @@ gem 'sqlite3'
 # end
 
 gem "haml-rails"
+gem 'devise'
