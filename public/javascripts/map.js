@@ -78,7 +78,9 @@ function fetchData() {
 						var marker = createMapMarker(point, item.id, "item.text", parseInt(item.icon));
 						markers[item.id].marker = marker;
 						markers[item.id].id = item.id;
-						markersText[item.id] = "<b>" + item.title + "</b> <br/>" + item.description;
+						markersText[item.id] = "<b>" + item.title + "</b><br/>" + item.description;
+						if(item.link !== null)
+							markersText[item.id] += "<br /><a href='" + item.link + "' target='_blank'>Visit Website</a>";
 						map.addOverlay(markers[item.id].marker);
 					}
 				}
