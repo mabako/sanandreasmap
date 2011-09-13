@@ -3,6 +3,7 @@ class PointsController < ApplicationController
   
   # GET /points
   # GET /points.xml
+  # GET /points.json
   def index
     @points = Point.all
 
