@@ -72,9 +72,9 @@ function fetchData() {
 				if (typeof data !== "undefined") {
 					for (id in data) {
 						var item = data[id];
-						var point = fromCoords(item.x, item.y)
 						markers[item.id] = {}
-						var marker = createMapMarker(point, item.id, "item.text", item.icon);
+						markers[item.id].point = fromCoords(item.x, item.y);
+						var marker = createMapMarker(markers[item.id].point, item.id, "item.text", item.icon);
 						markers[item.id].marker = marker;
 						markers[item.id].id = item.id;
 						markersText[item.id] = "<b>" + item.title + "</b>";
@@ -89,7 +89,7 @@ function fetchData() {
 		);
 		
 		if(window.location.hash !== null)
-			hashChanged(window.location.hash);
+			hashChanged(window.location.hash, true);
 	});
 }
 
@@ -140,16 +140,22 @@ function createMapMarker(point, id, text, type)
 
 // ---
 
-function hashChanged(hash)
+function hashChanged(hash, first)
 {
 	var i = parseInt(hash.substr(1));
 	if(markers[i] !== null)
+	{
+		if(first == true)
+		{
+			map.setCenter(markers[i].point, 5);
+		}
 		GEvent.trigger(markers[i].marker, "click");
+	}
 }
 
 if ("onhashchange" in window) { // event supported?
     window.onhashchange = function () {
-        hashChanged(window.location.hash);
+        hashChanged(window.location.hash, false);
     }
 }
 else { // event not supported:
@@ -157,7 +163,7 @@ else { // event not supported:
     window.setInterval(function () {
         if (window.location.hash != storedHash) {
             storedHash = window.location.hash;
-            hashChanged(storedHash);
+            hashChanged(storedHash, false);
         }
     }, 100);
 }
