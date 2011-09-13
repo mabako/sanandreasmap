@@ -18,7 +18,10 @@
         = link_to (image_tag "icons/#{point.icon}.png", :height => 25), root_path(:anchor => point.id), :target => :blank
       %td= point.title
       %td= point.description
-      %td= point.link
+      - if point.link.empty?
+        %td -
+      - else
+        %td= link_to "Link", point.link
       %td= point.x
       %td= point.y
       %td= link_to 'Show', point
