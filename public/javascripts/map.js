@@ -48,7 +48,7 @@
 
   // == a method that returns the width of the tilespace ==      
   EuclideanProjection.prototype.getWrapWidth=function(zoom) {
-    return this.tileBounds[zoom]*256;
+    return this.tileBounds[zoom]*4096*4096; // originally 256, but this would easily wrap all icons
   }
   
   
@@ -143,7 +143,7 @@ function createMapMarker(point, id, text, type)
 function hashChanged(hash, first)
 {
 	var i = parseInt(hash.substr(1));
-	if(markers[i] !== null)
+	if(markers[i] !== null && typeof markers[i] != "undefined")
 	{
 		if(first == true)
 		{
