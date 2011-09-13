@@ -19,6 +19,8 @@
   %b Icon:
   = @point.icon
 
+= link_to 'View', root_path(:anchor => @point.id), :target => :blank
+\|
 = link_to 'Edit', edit_point_path(@point)
 \|
 = link_to 'Back', points_path

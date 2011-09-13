@@ -2,6 +2,8 @@
 
 = render 'form'
 
+= link_to 'View', root_path(:anchor => @point.id), :target => :blank
+\|
 = link_to 'Show', @point
 \|
 = link_to 'Back', points_path
