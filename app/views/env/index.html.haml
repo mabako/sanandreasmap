@@ -5,3 +5,10 @@
         = tag
       %td
         = content
+  %tr
+    %td SSL?
+    %td
+      - if request.ssl?
+        Yes
+      - else
+        No
