@@ -74,7 +74,7 @@ function fetchData() {
 						var item = data[id];
 						markers[item.id] = {}
 						markers[item.id].point = fromCoords(item.x, item.y);
-						var marker = createMapMarker(markers[item.id].point, item.id, "item.text", item.icon);
+						var marker = createMapMarker(markers[item.id].point, item.id, item.icon);
 						markers[item.id].marker = marker;
 						markers[item.id].id = item.id;
 						markersText[item.id] = "<b>" + item.title + "</b>";
@@ -116,7 +116,7 @@ function load() {
 	}
 }
 
-function createMapMarker(point, id, text, type)
+function createMapMarker(point, id, type)
 {
 	if (typeof gtasaIcons[type] === "undefined")
 	{
