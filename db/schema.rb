@@ -10,14 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110912230825) do
+ActiveRecord::Schema.define(:version => 20110918122608) do
 
   create_table "points", :force => true do |t|
     t.string   "title"
     t.string   "description"
     t.string   "link"
-    t.float    "x"
-    t.float    "y"
+    t.integer  "x"
+    t.integer  "y"
     t.string   "icon"
     t.datetime "created_at"
     t.datetime "updated_at"
