@@ -13,3 +13,7 @@ The map is run on https://ls.vg on a lighttpd + Thin stack, hence why the
 thin.sh is just a shortcut to start/stop/restart everything easily. Again,
 as to see a sample implementation, just visit that website and watch
 everything happen.
+
+Currently enforces SSL + Strict Transport Security. If you can't/won't use SSL,
+least alone don't want to get one from StartCom or hate stuff in general, 
+disable the filter in the application controller.
